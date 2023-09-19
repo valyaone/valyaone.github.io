@@ -5,15 +5,158 @@
     <title>Четыре правила вёрстки</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image" href="https://code.s3.yandex.net/web-code/rules-favicon.ico">
-    <!-- Google tag (gtag.js) -->
+    <!-- BEGIN GA4 CODE -->
+    <script>
+    function clientid_ga4() {
+    	var match = document.cookie.match('(?:^|;)\\s*_ga=([^;]*)');
+    	var raw = (match) ? decodeURIComponent(match[1]) : null;
+    if (raw)
+    {
+    match = raw.match(/(\d+\.\d+)$/);
+    }
+    var gacid = (match) ? match[1] : null;
+    if (gacid)
+    {
+    	return gacid;
+    }
+    }
+    
+    // please use this https://www.ietf.org/rfc/rfc4122.txt
+    //or this simple variant:
+    function uuidv4_ga4() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    	var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    	return v.toString(16);
+      });
+    }
+    
+    // Referrer (страница с которой пользователь пришел)
+    function referrer_ga4()
+    {
+    if(document.referrer==""){
+    return "direct none"
+    }
+    else return document.referrer
+    }
+    
+    function url_language_ga4() {
+        const url = new URL(window.location.href);
+        var pagepath = url.pathname.toString();
+        var arrayOfStrings = pagepath.split('/');
+        if(arrayOfStrings[arrayOfStrings.length - 1].length == 2) {
+            return arrayOfStrings[arrayOfStrings.length - 1]
+        } else {
+            return 'en'
+        }
+    }
+    
+    function getTimeStamp_ga4() {
+    var now = new Date();
+    	var tzo = -now.getTimezoneOffset();
+    	var dif = tzo >= 0 ? '+' : '-';
+    	var pad = function(num) {
+        	var norm = Math.abs(Math.floor(num));
+        	return (norm < 10 ? '0' : '') + norm;};
+    	return now.getFullYear()
+        	+ '-' + pad(now.getMonth()+1)
+        	+ '-' + pad(now.getDate())
+        	+ 'T' + pad(now.getHours())
+        	+ ':' + pad(now.getMinutes())
+        	+ ':' + pad(now.getSeconds())
+        	+ '.' + pad(now.getMilliseconds())
+        	+ dif + pad(tzo / 60)
+        	+ ':' + pad(tzo % 60);
+    }
+           
+    function datetime_greenwich_ga4() {
+    const date = new Date();
+    
+    // returns UTC (=GMT) Hour of the date
+    let hour = date.getUTCHours();
+    
+    // returns UTC (=GMT) Minutes of the date
+    let minute = date.getUTCMinutes();
+    
+    // returns UTC (=GMT) Seconds of the date
+    let seconds = date.getUTCSeconds();
+    
+    // returns UTC (=GMT) year of the date
+    let year = date.getUTCFullYear();
+    
+    // returns UTC (=GMT) month (0-11)
+    //	0 is January, 11 is December
+    let month = date.getUTCMonth();
+    
+    // returns UTC (=GMT) day of the month (1-31)
+    let day = date.getUTCDate();
+    
+       return `${year}-${month+1}-${day} ${hour}:${minute}:${seconds}`;
+    }
+    
+    function url_tags_ga4() {
+    	if(document.URL.split('?')[1] != undefined) {
+            	var tags = document.URL.split('?')[1]
+            	return tags
+    	}
+    	else if(document.URL.split('#')[1] != undefined) {
+            	var tags = document.URL.split('#')[1]
+            	return tags
+    	}
+    	else
+        	return  'undefined'
+     	}
+    
+    </script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-N979T7JJMY"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
     
-      gtag('config', 'G-N979T7JJMY');
+    // Инициализация счетчика
+      gtag('config', 'G-N979T7JJMY', { 'send_page_view': false });
+     
+      // Отправка пользовательского неотслеживаемого события
+      gtag('event', 'initialize_cookie', {
+    	'send_to': 'G-N979T7JJMY',
+    	'non_interaction': true
+    	/*,
+    	'event_callback': function() {
+    	  console.log('Custom event sent, _ga cookie should be set.');
+    	}*/
+      });
+    
+    function pushDimensions_second() {
+    	let dimension1 = clientid_ga4();
+    	if( typeof dimension1 === 'undefined' || ! dimension1 ) {
+        	setTimeout(function(){ pushDimensions_second() }, 500 );
+    	} else {
+       gtag('event', 'page_view', {
+      	'send_to': 'G-N979T7JJMY',
+             	'event_option1': 'undefined',
+             	'event_option2': 'undefined',
+             	'event_option3': 'undefined',
+             	            
+              	'hit_id': getTimeStamp_ga4(),
+              	'uu_id': uuidv4_ga4(),
+              	'uu_id_2': uuidv4_ga4(),
+              	'datetime_greenwich': datetime_greenwich_ga4(),
+              	'datetime_greenwich_2': datetime_greenwich_ga4(),
+              	'client_id_ga': clientid_ga4() + '.',
+    
+              	'locale': url_language_ga4(), 
+              	'page_referrer_ga': referrer_ga4(),
+              	'url_tags': url_tags_ga4(),
+              	'ab_test': 'undefined'
+    });
+    
+    	}}
+    pushDimensions_second();
     </script>
+    <!-- END GA4 CODE -->
+
   </head>
   <body>
      <header class="header">
