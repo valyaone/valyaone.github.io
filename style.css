@@ -1,84 +1,78 @@
-body, h1,h2, h3, h4, p, a {
-  margin: 0;
-  font-size: 100%;
+@font-face {
+  src: url(https://code.s3.yandex.net/web-code/fonts/SuisseIntl-Book.woff);
+  font-family: 'Suisse';
   font-weight: normal;
 }
 
-* {
-  box-sizing: border-box;
+@font-face {
+  src: url(https://code.s3.yandex.net/web-code/fonts/SuisseIntl-Bold.woff
+);
+  font-family: 'Suisse';
+  font-weight: bold;
+}
+
+html {
+  height: 100%;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  font-family: 'Helvetica', 'Arial', sans-serif;
+  background-color: #323131;
+  color: white;
+  position: relative;
+  max-width: 540px;
+  min-height: 100%;
+  margin: 0 auto;
+  font-family: 'Suisse';
+  box-sizing: border-box;
+  padding: 36px;
 }
 
 .header {
-  height: 100vh;
-  background-color: #eee;
-  background-image: url(https://pictures.s3.yandex.net/frontend-developer/free-course/cover.jpg);
-  background-size: cover;
-  background-position: center;
-  text-align: center;
-}
-
-.header-title {
-  font-size: 140px;
-  color: white;
-  text-transform: uppercase;
-  font-weight: 500;
-  margin: auto;
-  
-}
-
-.overlay {
   display: flex;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, .5);
+  align-items: baseline;
+  justify-content: space-between;
 }
 
-.content {
-  font-size:0;
-  width:790px;
-  margin: 100px auto 50px auto;
-}
-
-.card {
-  width: 350px;
-  margin-bottom: 60px;
-  padding: 45px 45px 70px;
-  display: inline-block;
-  margin-right: 90px;
-  box-shadow: 4px 4px 5px rgba(250, 50, 50, .4);
-}
-
-.no-right-margin {
-  margin-right:0;
-}
-
-.card-title {
+.logo {
+  font-weight: bold;
   font-size: 24px;
-  font-weight: 500;
-  margin-bottom: 10px;
+  margin: 0;
 }
 
-.card-text {
-  font-size: 16px;
+.button {
+  width: 130px;
+  height: 40px;
+  padding-top: 10px;
+  box-sizing: border-box;
+  border: 1px solid white;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
 }
 
-.card-image {
-  width: 100%;
-  margin-bottom: 25px;
+.button:hover {
+  opacity: 0.5;
+}
+
+.image {
+  width: 80%;
+  display: block;
+  margin: 60px auto 50px;
+}
+
+.advice {
+  font-size: 42px;
+  font-weight: bold;
+  line-height: 1.1;
+  margin-bottom: 70px;
 }
 
 .footer {
-  height: 300px;
-  background-color: #000;
-  display: flex;
-}
-
-.footer-author {
-  color: #FFF;
-  font-size:24px;
-  margin: auto;
+  font-size: 16px;
+  margin: 0;
+  position: absolute;
+  bottom: 36px;
 }
