@@ -22,7 +22,7 @@
 <body>
   <div class="header">
     <p class="logo">Procrastinate.</p>
-    <div class="button">Ещё идея</div>
+    <div class="button" onclick = "sendData_Button1()">Ещё идея</div>
 
     <a href="working.html"> <div class="button_2" >Начать лениться</div> </a>
   </div>
@@ -38,6 +38,14 @@
   <p class="footer">© 2020 Сделал Алешновский Валя</p>
 
   <script src="https://code.s3.yandex.net/web-code/smoothly.js"></script>
+  <script>
+    function sendData_Button1() {
+        // Здесь вы можете добавить код для выполнения определенных действий при нажатии на кнопку
+        alert('Функция отправлена!');
+        // В этом примере функция просто выводит сообщение с помощью alert()
+        // Вы можете изменить эту функцию, чтобы выполнить нужные вам действия
+    }
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
